@@ -13,13 +13,20 @@ import java.util.Random;
 
 public class Utility {
     private static  Random random;
-private static CircularDoublyLinkedList employeeList;
+private static CircularLinkedList employeeList;
     //constructor estatico, inicializador estatico
     static {
         // semilla para el random
         long seed = System.currentTimeMillis();
         random = new Random(seed);
-        employeeList = new CircularDoublyLinkedList();
+        employeeList = new CircularLinkedList();
+    }
+    public static CircularLinkedList getEmployeeList() {
+        return employeeList;
+    }
+
+    public static void setEmployeeList(CircularLinkedList employeeList) {
+        Utility.employeeList = employeeList;
     }
 
 

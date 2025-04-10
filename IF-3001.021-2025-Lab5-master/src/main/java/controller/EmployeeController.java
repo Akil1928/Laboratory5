@@ -55,7 +55,7 @@ public class EmployeeController
     @javafx.fxml.FXML
     public void clearOnAction(ActionEvent actionEvent) {
         this.studentList.clear();
-        util.Utility.setEmployeeList(this.studentList); //actualizo la lista general
+        util.Utility.setEmployeeList(this.employeeList); //actualizo la lista general
         this.alert.setContentText("The list was deleted");
         this.alert.setAlertType(Alert.AlertType.INFORMATION);
         this.alert.showAndWait();
@@ -106,10 +106,10 @@ public class EmployeeController
 
     private void updateTableView() throws ListException {
         this.studentTableview.getItems().clear(); //clear table
-        this.studentList = util.Utility.getEmployeeList(); //cargo la lista
+        this.studentList = util.Utility.getStudentList(); //cargo la lista
         if(studentList!=null && !studentList.isEmpty()){
             for(int i=1; i<=studentList.size(); i++) {
-                this.studentTableview.getItems().add((Employee) studentList.getNode(i).data);
+                this.studentTableview.getItems().add((Student)studentList.getNode(i).data);
             }
         }
     }
