@@ -64,6 +64,9 @@ public class Employee {
         //return util.Utility.getAge(this.birthday);//Implementar el metodo getAge en utiliti
         return 0;
     }
+    public int getAge(){
+        return getAge(this.birthday);
+    }
 
     @Override
     public String toString() {
