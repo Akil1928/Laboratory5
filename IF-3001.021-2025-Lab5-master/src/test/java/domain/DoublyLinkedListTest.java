@@ -1,56 +1,72 @@
 package domain;
 
 import org.junit.jupiter.api.Test;
+import java.util.Calendar;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class DoublyLinkedListTest {
+public class CircularDoublyLinkedListTest {
 
     @Test
-    void test() {
-        DoublyLinkedList list = new DoublyLinkedList();
-        list.addFirst(20);
-        list.addFirst(10);
-        list.addFirst(30);
-        list.addFirst(50);
-        list.addFirst(40);
-        list.add(70);
-        list.add(5);
-        System.out.println(list);
-        try {
-            System.out.println("List size: "+list.size());
-            System.out.println("Removed first item: "+list.removeFirst());
-            System.out.println("List size: "+list.size());
-            System.out.println(list);
-            System.out.println("Removed first item: "+list.removeFirst());
-            System.out.println("List size: "+list.size());
-            /*for (int i = 0; i < 6 ; i++) {
-                list.removeFirst();
-            }*/
-            for (int i = 0; i < 50; i++) {
-                list.add(util.Utility.random(50));
+    public void testClasificacionPorEdad() throws ListException {
+        CircularDoublyLinkedList a = new CircularDoublyLinkedList();
+        CircularDoublyLinkedList b = new CircularDoublyLinkedList();
+        CircularDoublyLinkedList c = new CircularDoublyLinkedList();
+        CircularDoublyLinkedList d = new CircularDoublyLinkedList();
+
+        CircularLinkedList list = new CircularLinkedList();
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set(2005, 6, 21);
+        list.add(new Employee(111111111, "Alfonso", "Davis", "administracion", calendar.getTime()));
+
+        calendar.set(2002, 7, 19);
+        list.add(new Employee(222222222, "Watson", "Akil", "informatica", calendar.getTime()));
+
+        calendar.set(2000, 8, 15);
+        list.add(new Employee(333333333, "Moreno", "Javier", "informatica", calendar.getTime()));
+
+        calendar.set(1997, 9, 28);
+        list.add(new Employee(444444444, "Cerdas", "Cadima", "diseño publicitario", calendar.getTime()));
+
+        calendar.set(1995, 8, 15);
+        list.add(new Employee(555555555, "Sibaja", "Ana", "agronomia", calendar.getTime()));
+
+        calendar.set(1991, 4, 12);
+        list.add(new Employee(666666666, "Moreno", "Melvin", "doctor", calendar.getTime()));
+
+        calendar.set(1988, 2, 1);
+        list.add(new Employee(777777777, "Moreno", "Clareth", "abogado", calendar.getTime()));
+
+        calendar.set(1986, 11, 1);
+        list.add(new Employee(888888888, "Whimmy", "Jashburn", "turismo", calendar.getTime()));
+
+        calendar.set(1962, 6, 6);
+        list.add(new Employee(999999999, "Junior", "Vinicius", "asesor", calendar.getTime()));
+
+        calendar.set(1995, 6, 15);
+        list.add(new Employee(101010101, "Jlia", "Jones", "ingles", calendar.getTime()));
+
+        for (int i = 1; i <= list.size(); i++) {
+            Employee employee = (Employee) list.getNode(i).data;
+            int age = employee.getAge();
+
+            if (age >= 18 && age <= 25) {
+                a.add(employee);
+            } else if (age >= 26 && age <= 40) {
+                b.add(employee);
+            } else if (age >= 41 && age <= 55) {
+                c.add(employee);
+            } else if (age > 55) {
+                d.add(employee);
             }
-            System.out.println(list);
-
-            for (int i = 0; i <10 ; i++) {
-                int value = util.Utility.random(50);
-                System.out.println(
-                        list.contains(value)
-                                ? "The element ["+value+"] exists in the list. " +
-                                "Index: "+list.indexOf(value)
-                                :"The element ["+value+" does not exist in the list"
-                );
-
-                //probamos remove
-                if(list.contains(value)){
-                    list.remove(value);
-                    System.out.println("The element ["+value+"] has been deleted");
-                }
-            }
-
-            System.out.println(list);
-        } catch (ListException e) {
-            throw new RuntimeException(e);
         }
+
+        System.out.println("Lista A - Edad 18 a 25:");
+        System.out.println(a);
+        System.out.println("\nLista B - Edad 26 a 40:");
+        System.out.println(b);
+        System.out.println("\nLista C - Edad 41 a 55:");
+        System.out.println(c);
+        System.out.println("\nLista D - Edad mayor a 55:");
+        System.out.println(d);
     }
 }
