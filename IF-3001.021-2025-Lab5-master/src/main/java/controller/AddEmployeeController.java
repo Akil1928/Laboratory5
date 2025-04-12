@@ -53,7 +53,7 @@ public class AddEmployeeController {
     @FXML
     void addOnAction(ActionEvent event) {
         try {
-            // Validar que todos los campos estén completos
+
             if (textFieldId.getText().isEmpty() ||
                     textFieldLastName.getText().isEmpty() ||
                     textFieldFirstName.getText().isEmpty() ||
@@ -66,7 +66,6 @@ public class AddEmployeeController {
                 return;
             }
 
-            // Parsear el ID
             int id;
             try {
                 id = Integer.parseInt(textFieldId.getText());
@@ -83,7 +82,6 @@ public class AddEmployeeController {
                 return;
             }
 
-            // Verificar si el ID ya existe
             Employee tempEmployee = new Employee(id, "", "", "", null);
             if (!employeeList.isEmpty() && employeeList.contains(tempEmployee)) {
                 alert.setAlertType(Alert.AlertType.ERROR);
@@ -92,11 +90,11 @@ public class AddEmployeeController {
                 return;
             }
 
-            // Convertir LocalDate a Date
+
             LocalDate localDate = datePickerBirthday.getValue();
             Date birthday = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-            // Crear el nuevo empleado
+
             Employee newEmployee = new Employee(
                     id,
                     textFieldLastName.getText(),
@@ -105,18 +103,18 @@ public class AddEmployeeController {
                     birthday
             );
 
-            // Añadir el empleado a la lista
+
             employeeList.add(newEmployee);
 
-            // Actualizar la lista general
+
             util.Utility.setEmployeeList(employeeList);
 
-            // Mostrar mensaje de éxito
+
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("Employee added successfully:\n" + newEmployee.toString());
             alert.showAndWait();
 
-            // Limpiar los campos
+
             clearFields();
 
         } catch (ListException e) {
@@ -128,8 +126,7 @@ public class AddEmployeeController {
 
     @FXML
     void birthdayOnActio(ActionEvent event) {
-        // Este método se activa cuando se selecciona una fecha
-        // No necesita implementación adicional ya que el DatePicker maneja la selección
+
     }
 
     @FXML
@@ -149,26 +146,22 @@ public class AddEmployeeController {
     @FXML
     void closeOnAction(ActionEvent event) {
         try {
-            // 1. Cargar la vista principal completa (HelloView + Employee)
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/hello-view.fxml")); // O el nombre de tu vista principal
 
-            // 2. Obtener la ventana actual
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/hello-view.fxml"));
+
+
             Stage currentStage = (Stage) bp.getScene().getWindow();
 
-            // 3. Cargar la escena completa
             Parent root = loader.load();
 
-            // 4. Obtener referencia al BorderPane principal
-            BorderPane mainBorderPane = (BorderPane) root.lookup("#mainBorderPane"); // Asegúrate que coincida con tu ID
+            BorderPane mainBorderPane = (BorderPane) root.lookup("#mainBorderPane");
 
-            // 5. Cargar específicamente la vista de empleados en el centro
             if (mainBorderPane != null) {
                 FXMLLoader employeeLoader = new FXMLLoader(getClass().getResource("/employee.fxml"));
                 Parent employeeView = employeeLoader.load();
                 mainBorderPane.setCenter(employeeView);
             }
 
-            // 6. Establecer la nueva escena
             currentStage.setScene(new Scene(root));
             currentStage.sizeToScene();
 
@@ -184,7 +177,6 @@ public class AddEmployeeController {
 
     @FXML
     void employeeIdOnAction(ActionEvent event) {
-        // Validar el ID ingresado
         if (!textFieldId.getText().isEmpty()) {
             try {
                 int id = Integer.parseInt(textFieldId.getText());
@@ -194,7 +186,6 @@ public class AddEmployeeController {
                     alert.showAndWait();
                     textFieldId.requestFocus();
                 } else {
-                    // Verificar si el ID ya existe
                     try {
                         Employee tempEmployee = new Employee(id, "", "", "", null);
                         if (!employeeList.isEmpty() && employeeList.contains(tempEmployee)) {
@@ -205,7 +196,6 @@ public class AddEmployeeController {
                             textFieldLastName.requestFocus();
                         }
                     } catch (ListException e) {
-                        // Si la lista está vacía, no hay problema, continuamos
                         textFieldLastName.requestFocus();
                     }
                 }
@@ -220,7 +210,6 @@ public class AddEmployeeController {
 
     @FXML
     void firstNameOnAction(ActionEvent event) {
-        // Validar que el nombre no esté vacío
         if (textFieldFirstName.getText().isEmpty()) {
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText("First name cannot be empty.");
@@ -233,7 +222,6 @@ public class AddEmployeeController {
 
     @FXML
     void lastNameOnAction(ActionEvent event) {
-        // Validar que el apellido no esté vacío
         if (textFieldLastName.getText().isEmpty()) {
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText("Last name cannot be empty.");
@@ -246,7 +234,6 @@ public class AddEmployeeController {
 
     @FXML
     void titleOnAction(ActionEvent event) {
-        // Validar que el título no esté vacío
         if (textFieldTitle.getText().isEmpty()) {
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText("Title cannot be empty.");

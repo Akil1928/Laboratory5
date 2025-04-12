@@ -46,7 +46,6 @@ public class EmployeeController {
 
     @FXML
     public void initialize() {
-        //cargamos la lista general
         this.employeeList = util.Utility.getEmployeeList();
         alert = util.FXUtility.alert("Employees List", "Display Employee");
         alert.setAlertType(Alert.AlertType.ERROR);
@@ -61,7 +60,7 @@ public class EmployeeController {
                     employeesTableview.getItems().add((Employee) employeeList.getNode(i).data);
                 }
             }
-            //this.studentTableView.setItems(observableList);
+
         }catch(ListException ex){
             alert.setContentText("Employees list is empty");
             alert.showAndWait();
@@ -71,7 +70,6 @@ public class EmployeeController {
     @FXML
     void addOnAction(ActionEvent event) {
         try {
-            // Carga el FXML usando una ruta absoluta desde resources
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/addEmployee.fxml"));
             Parent root = loader.load();
             bp.setCenter(root);
@@ -86,12 +84,12 @@ public class EmployeeController {
     @FXML
     void clearOnAction(ActionEvent event) {
         this.employeeList.clear();
-        util.Utility.setEmployeeList(this.employeeList); //actualizo la lista general
+        util.Utility.setEmployeeList(this.employeeList);
         this.alert.setContentText("The list was deleted");
         this.alert.setAlertType(Alert.AlertType.INFORMATION);
         this.alert.showAndWait();
         try {
-            updateTableView(); //actualiza el contenido del tableview
+            updateTableView();
         } catch (ListException e) {
             throw new RuntimeException(e);
         }
@@ -145,7 +143,7 @@ public class EmployeeController {
                     alert.setContentText("Next employee: \n" + nextEmployee.toString());
                     alert.showAndWait();
 
-                    // Select the next employee in the table
+
                     employeesTableview.getSelectionModel().select(nextEmployee);
                 } else {
                     alert.setAlertType(Alert.AlertType.WARNING);
@@ -178,7 +176,7 @@ public class EmployeeController {
                     alert.setContentText("Previous employee: \n" + prevEmployee.toString());
                     alert.showAndWait();
 
-                    // Select the previous employee in the table
+
                     employeesTableview.getSelectionModel().select(prevEmployee);
                 } else {
                     alert.setAlertType(Alert.AlertType.WARNING);
@@ -208,13 +206,13 @@ public class EmployeeController {
             }
 
             Object removedEmployee = employeeList.removeLast();
-            util.Utility.setEmployeeList(this.employeeList); // Update the general list
+            util.Utility.setEmployeeList(this.employeeList);
 
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("Last employee was removed successfully:\n" + removedEmployee.toString());
             alert.showAndWait();
 
-            updateTableView(); // Update the table view
+            updateTableView();
         } catch (ListException e) {
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText("Error: " + e.getMessage());
@@ -229,13 +227,13 @@ public class EmployeeController {
 
             if (selectedEmployee != null) {
                 employeeList.remove(selectedEmployee);
-                util.Utility.setEmployeeList(this.employeeList); // Update the general list
+                util.Utility.setEmployeeList(this.employeeList);
 
                 alert.setAlertType(Alert.AlertType.INFORMATION);
                 alert.setContentText("Employee was removed successfully:\n" + selectedEmployee.toString());
                 alert.showAndWait();
 
-                updateTableView(); // Update the table view
+                updateTableView();
             } else {
                 alert.setAlertType(Alert.AlertType.ERROR);
                 alert.setContentText("Please select an employee from the table to remove");
@@ -272,9 +270,8 @@ public class EmployeeController {
                 return;
             }
 
-            // The default sort in CircularLinkedList sorts by ID
             employeeList.sort();
-            util.Utility.setEmployeeList(this.employeeList); // Update the general list
+            util.Utility.setEmployeeList(this.employeeList);
 
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("The employee list has been sorted by ID");
@@ -298,13 +295,11 @@ public class EmployeeController {
                 return;
             }
 
-            // Custom sort by name (last name, first name)
             for (int i = 1; i <= employeeList.size(); i++) {
                 for (int j = i + 1; j <= employeeList.size(); j++) {
                     Employee emp1 = (Employee) employeeList.getNode(i).data;
                     Employee emp2 = (Employee) employeeList.getNode(j).data;
 
-                    // Compare by last name first, then by first name if last names are equal
                     int lastNameComparison = emp1.getLastName().compareTo(emp2.getLastName());
                     if (lastNameComparison > 0 ||
                             (lastNameComparison == 0 && emp1.getFirstName().compareTo(emp2.getFirstName()) > 0)) {
@@ -316,13 +311,13 @@ public class EmployeeController {
                 }
             }
 
-            util.Utility.setEmployeeList(this.employeeList); // Update the general list
+            util.Utility.setEmployeeList(this.employeeList);
 
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("The employee list has been sorted by name (last name, first name)");
             alert.showAndWait();
 
-            updateTableView(); // Update the table view
+            updateTableView();
         } catch (ListException e) {
             alert.setAlertType(Alert.AlertType.ERROR);
             alert.setContentText("Error: " + e.getMessage());
@@ -331,8 +326,8 @@ public class EmployeeController {
     }
 
     private void updateTableView() throws ListException {
-        this.employeesTableview.getItems().clear(); //clear table
-        this.employeeList = util.Utility.getEmployeeList(); //cargo la lista
+        this.employeesTableview.getItems().clear();
+        this.employeeList = util.Utility.getEmployeeList();
         if(employeeList!=null && !employeeList.isEmpty()){
             for(int i=1; i<=employeeList.size(); i++) {
                 this.employeesTableview.getItems().add((Employee) employeeList.getNode(i).data);

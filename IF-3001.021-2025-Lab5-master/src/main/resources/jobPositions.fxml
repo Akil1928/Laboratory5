@@ -42,8 +42,8 @@
                      <buttons>
                         <Button layoutX="202.0" layoutY="17.0" mnemonicParsing="false" onAction="#sizeOnAction" text="Size" />
                         <Button layoutX="685.0" layoutY="17.0" mnemonicParsing="false" onAction="#containsOnAction" text="Contains" />
-                        <Button layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#sortByNameOnAction" text="Sort by Name" />
-                        <Button layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#sordByHourlyOnAction" text="Sord By Hourly" />
+                        <Button layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#sortByIdOnAction" text="Sort by Name" />
+                        <Button layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#sortByHourlyOnAction" text="Sord By Hourly" />
                         <Button mnemonicParsing="false" onAction="#addOnAction" text="Add" />
                      </buttons>
                   </ButtonBar>

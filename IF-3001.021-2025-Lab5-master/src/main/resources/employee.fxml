@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="bp" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeeController">
+<BorderPane fx:id="bp" prefHeight="617.0" prefWidth="351.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeeController">
    <center>
       <AnchorPane prefHeight="615.0" prefWidth="804.0">
          <children>
-            <Pane layoutX="-1.0" prefHeight="86.0" prefWidth="811.0" style="-fx-background-color: #fe6962;">
+            <Pane layoutX="-1.0" prefHeight="86.0" prefWidth="815.0" style="-fx-background-color: #fe6962;">
                <children>
                   <Label layoutX="56.0" layoutY="25.0" text="Employees List (Circular Linked List)">
                      <font>
@@ -23,22 +23,22 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="3.0" layoutY="86.0" prefHeight="367.0" prefWidth="798.0">
+            <Pane layoutX="3.0" layoutY="86.0" prefHeight="367.0" prefWidth="810.0">
                <children>
-                  <TableView fx:id="employeesTableview" layoutX="15.0" layoutY="14.0" prefHeight="350.0" prefWidth="761.0">
+                  <TableView fx:id="employeesTableview" layoutX="-2.0" layoutY="2.0" prefHeight="364.0" prefWidth="814.0">
                     <columns>
                       <TableColumn fx:id="idTableColumn" prefWidth="118.4000186920166" text="Id" />
                       <TableColumn fx:id="lastNameTableColumn" prefWidth="149.60000610351562" text="Last Name" />
                         <TableColumn fx:id="firstNameTableColumn" minWidth="8.0" prefWidth="156.800048828125" text="Fist Name" />
                         <TableColumn fx:id="titleTableColumn" prefWidth="215.99996948242188" text="Title" />
-                        <TableColumn fx:id="birthdayTableColumn" prefWidth="123.199951171875" text="Birthday" />
+                        <TableColumn fx:id="birthdayTableColumn" prefWidth="170.0" text="Birthday" />
                     </columns>
                   </TableView>
                </children>
             </Pane>
-            <Pane layoutX="19.0" layoutY="462.0" prefHeight="153.0" prefWidth="761.0">
+            <Pane layoutX="-59.0" layoutY="463.0" prefHeight="154.0" prefWidth="872.0">
                <children>
-                  <ButtonBar layoutX="1.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="761.0">
+                  <ButtonBar layoutX="73.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="761.0">
                     <buttons>
                         <Button layoutX="202.0" layoutY="17.0" mnemonicParsing="false" onAction="#sizeOnAction" text="Size" />
                         <Button layoutX="685.0" layoutY="17.0" mnemonicParsing="false" onAction="#containsOnAction" text="Contains" />
@@ -47,13 +47,13 @@
                       <Button mnemonicParsing="false" onAction="#addOnAction" text="Add" />
                     </buttons>
                   </ButtonBar>
-                  <ButtonBar layoutY="57.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="761.0">
+                  <ButtonBar layoutX="73.0" layoutY="57.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="761.0">
                     <buttons>
                         <Button layoutX="202.0" layoutY="17.0" mnemonicParsing="false" onAction="#clearOnAction" text="Clear" />
                         <Button layoutX="125.0" layoutY="17.0" mnemonicParsing="false" onAction="#removeLastOnAction" text="Remove Last" />
-                        <Button layoutX="525.0" layoutY="17.0" mnemonicParsing="false" onAction="#removeOnAction" text="Remove" />
                         <Button layoutX="104.0" layoutY="17.0" mnemonicParsing="false" onAction="#getNextOnAction" text="Get Next" />
                       <Button mnemonicParsing="false" onAction="#getPrevOnAction" text="Get Prev" />
+                        <Button layoutX="525.0" layoutY="17.0" mnemonicParsing="false" onAction="#removeOnAction" text="Remove" />
                     </buttons>
                   </ButtonBar>
                </children>

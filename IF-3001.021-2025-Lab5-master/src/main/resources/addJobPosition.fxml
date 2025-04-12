@@ -45,9 +45,9 @@
                         <Button layoutX="346.0" layoutY="22.0" mnemonicParsing="false" onAction="#closeOnAction" text="Close" />
                      </children>
                   </Pane>
-                  <TextField fx:id="textFieldId" layoutX="156.0" layoutY="12.0" onAction="#jobPositionIdOnAction" prefHeight="25.0" prefWidth="110.0" />
-                  <TextField fx:id="textFieldLastName" layoutX="124.0" layoutY="55.0" onAction="#descriptionOnAction" prefHeight="25.0" prefWidth="233.0" />
-                  <TextField fx:id="textFieldFirstName" layoutX="124.0" layoutY="106.0" onAction="#hourlyOnAction" prefHeight="25.0" prefWidth="235.0" />
+                  <TextField fx:id="textFieldJobPosition" layoutX="156.0" layoutY="12.0" onAction="#jobPositionIdOnAction" prefHeight="25.0" prefWidth="110.0" />
+                  <TextField fx:id="textFieldDescription" layoutX="124.0" layoutY="55.0" onAction="#descriptionOnAction" prefHeight="25.0" prefWidth="233.0" />
+                  <TextField fx:id="textFieldHourly" layoutX="124.0" layoutY="106.0" onAction="#hourlyOnAction" prefHeight="25.0" prefWidth="235.0" />
                </children>
             </Pane>
          </children>
