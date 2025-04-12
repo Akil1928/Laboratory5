@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -14,32 +15,37 @@ import java.io.IOException;
 public class HelloController {
 
     @FXML
-    private Text txtMessage;
-    @FXML
-    private BorderPane bp;
-    @FXML
     private AnchorPane ap;
 
+    @FXML
+    private BorderPane bp;
+
+    @FXML
+    private Text txtMessage;
+
+    @FXML
     private void load(String form) {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(form));
         try {
+            // Intenta cargar el FXML con una ruta completa
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/"+form));
+
+            // Asegúrate de manejar cualquier error de carga
+            if (fxmlLoader.getLocation() == null) {
+                System.err.println("No se puede encontrar el archivo FXML: " + form);
+                return;
+            }
+
             this.bp.setCenter(fxmlLoader.load());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace(); // Muestra el stack trace completo
+            throw new RuntimeException("Error al cargar el FXML: " + form, e);
         }
     }
 
     @FXML
-    public void Home(ActionEvent actionEvent) {
-        this.txtMessage.setText("Laboratory 4");
-        this.bp.setCenter(ap);
-    }
-
-    @FXML
-    public void Exit(ActionEvent actionEvent) {
+    void Exit(ActionEvent event) {
         System.exit(0);
     }
-
     @FXML
     public void exampleOnMousePressed(Event event) {
         this.txtMessage.setText("Loading Example. Please wait!!!");
@@ -47,17 +53,33 @@ public class HelloController {
     }
 
     @FXML
-    public void studentsOnAction(ActionEvent actionEvent) {
+    void Home(ActionEvent event) {
+        this.txtMessage.setText("Laboratory 5");
+        this.bp.setCenter(ap);
+
+    }
+
+    @FXML
+    void employeesOnAction(ActionEvent event) {
         load("employee.fxml");
+
     }
 
     @FXML
-    public void registerOnAction(ActionEvent actionEvent) {
-        load("register.fxml");
+    void exampleOnMousePressed(MouseEvent event) {
+        this.txtMessage.setText("Loading Example. Please wait!!!");
+
     }
 
     @FXML
-    public void coursesOnAction(ActionEvent actionEvent) {
-        load("course.fxml");
+    void jobPositionsOnAction(ActionEvent event) {
+        load("jobPositions.fxml");
+
     }
+
+    @FXML
+    void staffingOnAction(ActionEvent event) {
+        load("staffing.fxml");
+    }
+
 }

@@ -1,5 +1,8 @@
 package domain;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class Employee {
@@ -60,13 +63,21 @@ public class Employee {
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
-    public int getAge(Date date){
-        //return util.Utility.getAge(this.birthday);//Implementar el metodo getAge en utiliti
-        return 0;
+    public int getAge(Date birthDay){
+
+
+            LocalDate birth = birthDay.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            LocalDate now = LocalDate.now();
+
+            return Period.between(birth, now).getYears();
+
     }
     public int getAge(){
+
         return getAge(this.birthday);
     }
+
 
     @Override
     public String toString() {
